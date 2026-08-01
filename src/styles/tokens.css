@@ -1,0 +1,22 @@
+:root {
+  --bg-deep: #0c1612;
+  --bg-cellar: #13241c;
+  --bg-panel: #1a3228;
+  --glass-green: #1f3d32;
+  --glass-highlight: #2f5a48;
+  --wine: #6b1e2e;
+  --wine-bright: #8b2942;
+  --wine-glow: rgba(139, 41, 66, 0.35);
+  --gold: #c9a84c;
+  --gold-soft: #e0c97a;
+  --label-paper: #f3efe4;
+  --label-ink: #1a1a16;
+  --text: #f2efe6;
+  --text-muted: #a8b5ad;
+  --correct: #3d8b6e;
+  --wrong: #b54a4a;
+  --radius: 4px;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
