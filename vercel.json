@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/share/:score", "destination": "/api/share?score=:score" }
+    { "source": "/share/:score", "destination": "/share/:score.html" }
   ]
 }
