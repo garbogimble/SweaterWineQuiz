@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { LandingBottle } from './components/LandingBottle'
 import { Quiz } from './components/Quiz'
 import { ResultsCard } from './components/ResultsCard'
@@ -61,6 +62,7 @@ export default function App() {
           onRetake={retake}
         />
       )}
+      <Analytics />
     </div>
   )
 }
