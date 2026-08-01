@@ -31,4 +31,4 @@ No environment variables are required.
 
 ## Share links
 
-Results use a URL query param, e.g. `/?score=7`.
+Shareable result links use `/share/:score` (e.g. `/share/7`). That route serves Open Graph meta tags and a generated card image at `/api/og?score=7` so X, iMessage, and other previews can show a thumbnail. Humans are redirected into the app result view.
