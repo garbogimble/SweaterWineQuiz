@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import { blurbs, portraitForScore } from '../data/questions'
+import { shareUrlForScore } from '../lib/share'
 
 type ResultsCardProps = {
   score: number
@@ -36,14 +37,12 @@ export function ResultsCard({
   }
 
   async function copyShareLink() {
-    const url = new URL(window.location.href)
-    url.search = ''
-    url.searchParams.set('score', String(score))
+    const url = shareUrlForScore(score)
     try {
-      await navigator.clipboard.writeText(url.toString())
+      await navigator.clipboard.writeText(url)
       setToast('Share link copied — invite a friend to take the quiz.')
     } catch {
-      setToast(url.toString())
+      setToast(url)
     }
   }
 

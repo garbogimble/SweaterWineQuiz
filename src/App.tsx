@@ -2,25 +2,16 @@ import { useEffect, useState } from 'react'
 import { LandingBottle } from './components/LandingBottle'
 import { Quiz } from './components/Quiz'
 import { ResultsCard } from './components/ResultsCard'
+import { parseSharedScore, sharePathForScore } from './lib/share'
 
 type Screen = 'landing' | 'quiz' | 'results'
 
-function parseScoreParam(): number | null {
-  const raw = new URLSearchParams(window.location.search).get('score')
-  if (raw === null) return null
-  const n = Number(raw)
-  if (!Number.isInteger(n) || n < 0 || n > 10) return null
-  return n
-}
-
-function clearScoreParam() {
-  const url = new URL(window.location.href)
-  url.searchParams.delete('score')
-  window.history.replaceState({}, '', url.pathname)
+function clearShareFromUrl() {
+  window.history.replaceState({}, '', '/')
 }
 
 export default function App() {
-  const shared = parseScoreParam()
+  const shared = parseSharedScore(window.location.pathname, window.location.search)
   const [screen, setScreen] = useState<Screen>(
     shared !== null ? 'results' : 'landing',
   )
@@ -35,7 +26,7 @@ export default function App() {
   }, [screen, score])
 
   function startQuiz() {
-    clearScoreParam()
+    clearShareFromUrl()
     setFromShareLink(false)
     setScore(0)
     setScreen('quiz')
@@ -46,16 +37,14 @@ export default function App() {
     setFromShareLink(false)
     setScreen('results')
     if (finalScore > 0) {
-      const url = new URL(window.location.href)
-      url.searchParams.set('score', String(finalScore))
-      window.history.replaceState({}, '', `${url.pathname}?score=${finalScore}`)
+      window.history.replaceState({}, '', sharePathForScore(finalScore))
     } else {
-      clearScoreParam()
+      clearShareFromUrl()
     }
   }
 
   function retake() {
-    clearScoreParam()
+    clearShareFromUrl()
     setFromShareLink(false)
     setScore(0)
     setScreen('landing')
